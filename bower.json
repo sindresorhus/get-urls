@@ -1,6 +1,6 @@
 {
   "name": "get-urls",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Get all urls in a string",
   "license": "MIT",
   "main": "get-urls.js",
