@@ -14,8 +14,13 @@
 
 	var getUrls = function (str) {
 		var reUrl = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
+		var urls = str.match(reUrl);
 
-		return str.match(reUrl).map(function (url) {
+		if (!urls) {
+			return [];
+		}
+
+		return urls.map(function (url) {
 			// cleanup and normalize the url
 			return url.trim().replace(/\.*$/, '').replace(/^(?!https?:\/\/)/, 'http://');
 		}).filter(uniq);
