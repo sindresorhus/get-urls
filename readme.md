@@ -1,6 +1,6 @@
 # get-urls [![Build Status](https://travis-ci.org/sindresorhus/get-urls.png?branch=master)](http://travis-ci.org/sindresorhus/get-urls)
 
-> Get all urls in a string
+Very simple, self-contained way to get all urls in a string. For a more reliable solution, consider [find-urls](https://github.com/juliangruber/find-urls) or use [the official URL regexp from Component](https://github.com/component/regexps/blob/master/index.js#L3).
 
 The urls will be normalized and uniquified.
 
