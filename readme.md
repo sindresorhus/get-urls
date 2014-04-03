@@ -1,4 +1,4 @@
-# get-urls [![Build Status](https://travis-ci.org/sindresorhus/get-urls.png?branch=master)](http://travis-ci.org/sindresorhus/get-urls)
+# get-urls [![Build Status](https://travis-ci.org/sindresorhus/get-urls.svg?branch=master)](https://travis-ci.org/sindresorhus/get-urls)
 
 > Get all urls in a string
 
@@ -9,26 +9,20 @@ The urls will be normalized and uniquified.
 
 Download [manually](https://github.com/sindresorhus/get-urls/releases) or with a package-manager.
 
-#### [npm](https://npmjs.org/package/get-urls)
-
-```
-npm install --save get-urls
+```bash
+$ npm install --save get-urls
 ```
 
-#### [Bower](http://bower.io)
-
-```
-bower install --save get-urls
+```bash
+$ bower install --save get-urls
 ```
 
-#### [Component](https://github.com/component/component)
-
-```
-component install sindresorhus/get-urls
+```bash
+$ component install sindresorhus/get-urls
 ```
 
 
-## Example
+## Usage
 
 ```js
 var text = 'Lorem ipsum dolor sit amet, sindresorhus.com consectetuer adipiscing http://yeoman.io elit.';
@@ -42,13 +36,13 @@ getUrls(text);
 
 You can also use it as a CLI app by installing it globally:
 
-```
-npm install --global get-urls
+```bash
+$ npm install --global get-urls
 ```
 
 #### Usage
 
-```
+```bash
 $ get-urls -h
 
 get-urls <input-file>
@@ -59,4 +53,4 @@ cat <input-file> | get-urls
 
 ## License
 
-MIT © [Sindre Sorhus](http://sindresorhus.com)
+[MIT](http://opensource.org/licenses/MIT) © [Sindre Sorhus](http://sindresorhus.com)
