@@ -1,9 +1,9 @@
 {
   "name": "get-urls",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Get all urls in a string",
   "license": "MIT",
-  "repo": "sindresorhus/get-urls",
+  "repository": "sindresorhus/get-urls",
   "main": "get-urls.js",
   "scripts": ["get-urls.js"],
   "keywords": [
