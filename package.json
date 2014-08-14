@@ -4,14 +4,13 @@
   "description": "Get all urls in a string",
   "license": "MIT",
   "repository": "sindresorhus/get-urls",
-  "main": "get-urls.js",
-  "bin": {
-    "get-urls": "cli.js"
-  },
   "author": {
     "name": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "http://sindresorhus.com"
+  },
+  "bin": {
+    "get-urls": "cli.js"
   },
   "engines": {
     "node": ">=0.10.0"
@@ -37,6 +36,10 @@
     "cli",
     "browser"
   ],
+  "dependencies": {
+    "array-uniq": "^1.0.0",
+    "get-stdin": "^1.0.0"
+  },
   "devDependencies": {
     "mocha": "*"
   }

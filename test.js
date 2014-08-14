@@ -1,7 +1,7 @@
 'use strict';
 var assert = require('assert');
 var fs = require('fs');
-var getUrls = require('./get-urls');
+var getUrls = require('./');
 
 it('should get unique cleaned-up urls from a string', function () {
 	assert.deepEqual(

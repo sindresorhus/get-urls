@@ -7,18 +7,8 @@ The urls will be normalized and uniquified.
 
 ## Install
 
-Download [manually](https://github.com/sindresorhus/get-urls/releases) or with a package-manager.
-
-```bash
+```sh
 $ npm install --save get-urls
-```
-
-```bash
-$ bower install --save get-urls
-```
-
-```bash
-$ component install sindresorhus/get-urls
 ```
 
 
@@ -34,23 +24,19 @@ getUrls(text);
 
 ## CLI
 
-You can also use it as a CLI app by installing it globally:
-
-```bash
+```sh
 $ npm install --global get-urls
 ```
 
-#### Usage
-
-```bash
+```sh
 $ get-urls -h
 
-get-urls <input-file>
-or
-cat <input-file> | get-urls
+  Usage
+    get-urls <file>
+    cat <file> | get-urls
 ```
 
 
 ## License
 
-[MIT](http://opensource.org/licenses/MIT) © [Sindre Sorhus](http://sindresorhus.com)
+MIT © [Sindre Sorhus](http://sindresorhus.com)
