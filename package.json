@@ -19,7 +19,7 @@
     "test": "mocha"
   },
   "files": [
-    "get-urls.js",
+    "index.js",
     "cli.js"
   ],
   "keywords": [
