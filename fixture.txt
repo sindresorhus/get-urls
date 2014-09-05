@@ -6,15 +6,15 @@ http://google.com
       sda
       sda
       fsda
-      yeoman.io      f
+      aaa www.todomvc.com      f
       sad
       asdf
-      asdf
+      asdf http://yeoman.io ~~~~
 
-  twitter.com. asdfdsa fsdasad sfdasjkfadhsfkjhsdalkf
+  http://twitter.com/sindresorhus. asdfdsa fsdasad sfdasjkfadhsfkjhsdalkf
 
 
-sadsafda sas ifdos;fjewqrp23i4k231 412 yeoman.io
+sadsafda sas ifdos;fjewqrp23i4k231 412 http://yeoman.io
 
 asfasfsad ssadf https://tastejs.com
 
