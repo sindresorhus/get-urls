@@ -1,9 +1,9 @@
 'use strict';
 var arrayUniq = require('array-uniq');
+var urlRegex = require('url-regex');
 
 module.exports = function (str) {
-	var reUrl = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
-	var urls = str.match(reUrl);
+	var urls = str.match(urlRegex());
 
 	if (!urls) {
 		return [];
