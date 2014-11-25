@@ -1,44 +1,29 @@
 #!/usr/bin/env node
 'use strict';
 var fs = require('fs');
+var meow = require('meow');
 var stdin = require('get-stdin');
-var pkg = require('./package.json');
 var getUrls = require('./');
-var argv = process.argv.slice(2);
-var input = argv[0];
 
-function help() {
-	console.log([
-		'',
-		'  ' + pkg.description,
-		'',
-		'  Usage',
-		'    get-urls <file>',
-		'    cat <file> | get-urls'
-	].join('\n'));
-}
+var cli = meow({
+	help: [
+		'Usage',
+		'  get-urls <file>',
+		'  cat <file> | get-urls'
+	].join('\n')
+});
 
 function init(data) {
 	console.log(getUrls(data).join('\n'));
 }
 
-if (argv.indexOf('--help') !== -1) {
-	help();
-	return;
-}
-
-if (argv.indexOf('--version') !== -1) {
-	console.log(pkg.version);
-	return;
-}
-
 if (process.stdin.isTTY) {
-	if (!input) {
-		help();
-		return;
+	if (!cli.input.length) {
+		console.error('Input file required');
+		process.exit(1);
 	}
 
-	init(fs.readFileSync(input, 'utf8'));
+	init(fs.readFileSync(cli.input[0], 'utf8'));
 } else {
 	stdin(init);
 }

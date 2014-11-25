@@ -39,6 +39,7 @@
   "dependencies": {
     "array-uniq": "^1.0.0",
     "get-stdin": "^3.0.0",
+    "meow": "^2.0.0",
     "url-regex": "^2.0.3"
   },
   "devDependencies": {
