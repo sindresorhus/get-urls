@@ -29,7 +29,7 @@ $ npm install --global get-urls
 ```
 
 ```sh
-$ get-urls -h
+$ get-urls --help
 
   Usage
     get-urls <file>
