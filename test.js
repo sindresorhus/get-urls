@@ -12,7 +12,8 @@ it('should get unique cleaned-up urls from a string', function () {
 			'http://yeoman.io',
 			'http://twitter.com/sindresorhus',
 			'https://tastejs.com',
-			'http://www.google.com'
+			'http://www.google.com',
+			'http://github.com'
 		]
 	);
 });
