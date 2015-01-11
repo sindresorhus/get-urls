@@ -1,6 +1,7 @@
 'use strict';
 var arrayUniq = require('array-uniq');
 var urlRegex = require('url-regex');
+var normalizeUrl = require('normalize-url');
 
 module.exports = function (str) {
 	var urls = str.match(urlRegex());
@@ -10,7 +11,6 @@ module.exports = function (str) {
 	}
 
 	return arrayUniq(urls.map(function (url) {
-		// cleanup and normalize the url
-		return url.trim().replace(/\.*$/, '').replace(/^(?!https?:\/\/)/, 'http://');
+		return normalizeUrl(url.trim().replace(/\.*$/, ''));
 	}));
 };
