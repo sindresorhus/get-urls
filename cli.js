@@ -10,7 +10,7 @@ var cli = meow({
 		'Usage',
 		'  get-urls <file>',
 		'  cat <file> | get-urls'
-	].join('\n')
+	]
 });
 
 function init(data) {
