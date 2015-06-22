@@ -1,6 +1,6 @@
 {
   "name": "get-urls",
-  "version": "4.0.1",
+  "version": "5.0.0",
   "description": "Get all urls in a string",
   "license": "MIT",
   "repository": "sindresorhus/get-urls",
