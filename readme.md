@@ -29,35 +29,9 @@ Type: `string`
 
 ### options
 
-#### stripFragment
-Type: `boolean`
+Type: `object`
 
-Default: `true`
-
-```
-var text = 'http://www.google.com/document.html#about'
-
-getUrls(text, {stripFragment: true});
-//=> ['http://www.google.com/document.html']
-
-getUrls(text, {stripFragment: false});
-//=> ['http://www.google.com/document.html#about']
-```
-
-#### stripWWW
-Type: `boolean`
-
-Default: `true`
-
-```
-var text = 'http://www.google.com'
-
-getUrls(text, {stripWWW: true});
-//=> ['http://google.com']
-
-getUrls(text, {stripFragment: false});
-//=> ['http://www.google.com']
-```
+This object is passed to [normalize-url](https://github.com/sindresorhus/normalize-url). The properties and their functionality is described in the normalize-url [readme](https://github.com/sindresorhus/normalize-url/blob/master/readme.md).
 
 ## CLI
 
