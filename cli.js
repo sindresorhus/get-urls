@@ -13,17 +13,19 @@ var cli = meow({
 	]
 });
 
+var input = cli.input[0];
+
 function init(data) {
 	console.log(getUrls(data).join('\n'));
 }
 
-if (process.stdin.isTTY) {
-	if (!cli.input.length) {
-		console.error('Input file required');
-		process.exit(1);
-	}
+if (!input && process.stdin.isTTY) {
+	console.error('Input file required');
+	process.exit(1);
+}
 
-	init(fs.readFileSync(cli.input[0], 'utf8'));
+if (input) {
+	init(fs.readFileSync(input, 'utf8'));
 } else {
 	stdin(init);
 }
