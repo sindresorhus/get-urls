@@ -13,14 +13,50 @@ $ npm install --save get-urls
 
 
 ## Usage
-
-```js
+### getUrls(text, [options]);
+```
 var text = 'Lorem ipsum dolor sit amet, sindresorhus.com consectetuer adipiscing http://yeoman.io elit.';
 
 getUrls(text);
 //=> ['http://sindresorhus.com', 'http://yeoman.io']
 ```
 
+### text
+*Required*
+
+Type: `string`
+
+### options
+
+#### stripFragment
+Type: `boolean`
+
+Default: `true`
+
+```
+var text = 'http://www.google.com/document.html#about'
+
+getUrls(text, {stripFragment: true});
+//=> ['http://www.google.com/document.html']
+
+getUrls(text, {stripFragment: false});
+//=> ['http://www.google.com/document.html#about']
+```
+
+#### stripWWW
+Type: `boolean`
+
+Default: `true`
+
+```
+var text = 'http://www.google.com'
+
+getUrls(text, {stripWWW: true});
+//=> ['http://google.com']
+
+getUrls(text, {stripFragment: false});
+//=> ['http://www.google.com']
+```
 
 ## CLI
 
