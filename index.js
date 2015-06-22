@@ -3,7 +3,7 @@ var arrayUniq = require('array-uniq');
 var urlRegex = require('url-regex');
 var normalizeUrl = require('normalize-url');
 
-module.exports = function (str) {
+module.exports = function (str, opts) {
 	var urls = str.match(urlRegex());
 
 	if (!urls) {
@@ -11,6 +11,6 @@ module.exports = function (str) {
 	}
 
 	return arrayUniq(urls.map(function (url) {
-		return normalizeUrl(url.trim().replace(/\.*$/, ''));
+		return normalizeUrl(url.trim().replace(/\.*$/, ''), opts);
 	}));
 };
