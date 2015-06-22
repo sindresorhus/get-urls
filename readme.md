@@ -15,7 +15,7 @@ $ npm install --save get-urls
 ## Usage
 
 ```js
-var text = 'Lorem ipsum dolor sit amet, sindresorhus.com consectetuer adipiscing http://yeoman.io elit.';
+var text = 'Lorem ipsum dolor sit amet, //sindresorhus.com consectetuer adipiscing http://yeoman.io elit.';
 
 getUrls(text);
 //=> ['http://sindresorhus.com', 'http://yeoman.io']
