@@ -9,6 +9,7 @@ test('get unique cleaned-up urls from a string', t => {
 		'http://yeoman.io',
 		'http://twitter.com/sindresorhus',
 		'https://tastejs.com',
+		'http://example.com',
 		'http://github.com'
 	]);
 });
@@ -43,5 +44,10 @@ test('strip www when stripWWW is set to true', t => {
 
 test('strip www by default if stripWWW is not in opt', t => {
 	const text = 'You can read http://www.foobar.com/document.html for more info';
+	t.deepEqual(fn(text), ['http://foobar.com/document.html']);
+});
+
+test('finds urls beginning with `www`', t => {
+	const text = 'You can read www.foobar.com/document.html for more info';
 	t.deepEqual(fn(text), ['http://foobar.com/document.html']);
 });
