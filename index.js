@@ -11,6 +11,6 @@ module.exports = function (str, opts) {
 	}
 
 	return arrayUniq(urls.map(function (url) {
-		return normalizeUrl(url.trim().replace(/\.*$/, ''), opts);
+		return normalizeUrl(url.trim().replace(/\.+$/, ''), opts);
 	}));
 };
