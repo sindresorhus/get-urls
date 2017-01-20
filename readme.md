@@ -1,8 +1,8 @@
 # get-urls [![Build Status](https://travis-ci.org/sindresorhus/get-urls.svg?branch=master)](https://travis-ci.org/sindresorhus/get-urls)
 
-> Get all urls in a string
+> Get all URLs in a string
 
-The urls will be [normalized](https://github.com/sindresorhus/normalize-url) and uniquified.
+The URLs will be [normalized](https://github.com/sindresorhus/normalize-url) and uniquified.
 
 
 ## Install
@@ -15,7 +15,7 @@ $ npm install --save get-urls
 ## Usage
 
 ```js
-var text = 'Lorem ipsum dolor sit amet, //sindresorhus.com consectetuer adipiscing http://yeoman.io elit.';
+const text = 'Lorem ipsum dolor sit amet, //sindresorhus.com consectetuer adipiscing http://yeoman.io elit.';
 
 getUrls(text);
 //=> ['http://sindresorhus.com', 'http://yeoman.io']
@@ -24,35 +24,24 @@ getUrls(text);
 
 ## API
 
-### getUrls(text, [options]);
+### getUrls(text, [options])
 
 ### text
 
-*Required*  
 Type: `string`
 
 ### options
 
-Type: `object`
+Type: `Object`
 
 See the `normalize-url` [options](https://github.com/sindresorhus/normalize-url#options).
 
 
-## CLI
+## Related
 
-```
-$ npm install --global get-urls
-```
-
-```
-$ get-urls --help
-
-  Usage
-    get-urls <file>
-    cat <file> | get-urls
-```
+- [get-urls-cli](https://github.com/sindresorhus/get-urls-cli) - CLI for this module
 
 
 ## License
 
-MIT © [Sindre Sorhus](http://sindresorhus.com)
+MIT © [Sindre Sorhus](https://sindresorhus.com)

@@ -1,7 +1,7 @@
 {
   "name": "get-urls",
   "version": "5.0.1",
-  "description": "Get all urls in a string",
+  "description": "Get all URLs in a string",
   "license": "MIT",
   "repository": "sindresorhus/get-urls",
   "author": {
@@ -9,37 +9,30 @@
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com"
   },
-  "bin": "cli.js",
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=4"
   },
   "scripts": {
     "test": "xo && ava"
   },
   "files": [
-    "index.js",
-    "cli.js"
+    "index.js"
   ],
   "keywords": [
-    "cli-app",
-    "cli",
+    "get",
     "urls",
     "url",
     "uri",
-    "get",
     "extract",
     "find",
     "scrape",
     "text",
-    "string",
-    "browser"
+    "string"
   ],
   "dependencies": {
     "array-uniq": "^1.0.0",
-    "get-stdin": "^4.0.1",
-    "meow": "^3.3.0",
     "normalize-url": "^1.3.0",
-    "url-regex": "^3.2.0"
+    "url-regex": "^4.0.0"
   },
   "devDependencies": {
     "ava": "*",

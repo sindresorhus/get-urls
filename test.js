@@ -1,9 +1,9 @@
 import fs from 'fs';
 import test from 'ava';
-import fn from './';
+import m from './';
 
 test('get unique cleaned-up urls from a string', t => {
-	t.deepEqual(fn(fs.readFileSync('fixture.txt', 'utf8')), [
+	t.deepEqual(m(fs.readFileSync('fixture.txt', 'utf8')), [
 		'http://google.com',
 		'http://todomvc.com',
 		'http://yeoman.io',
@@ -17,37 +17,37 @@ test('get unique cleaned-up urls from a string', t => {
 test(`don't strip fragments when skipFragments is set to false`, t => {
 	const text = 'You can read http://www.foobar.com/document.html#about for more info';
 	t.deepEqual(
-		fn(text, {stripFragment: false}),
+		m(text, {stripFragment: false}),
 		['http://foobar.com/document.html#about']
 	);
 });
 
 test('strip fragments when skipFragments is set to true', t => {
 	const text = 'You can read http://www.foobar.com/document.html#about for more info';
-	t.deepEqual(fn(text, {stripFragment: true}), ['http://foobar.com/document.html']);
+	t.deepEqual(m(text, {stripFragment: true}), ['http://foobar.com/document.html']);
 });
 
 test('strip fragments by default if skipFragments is not in opt', t => {
 	const text = 'You can read http://www.foobar.com/document.html#about for more info';
-	t.deepEqual(fn(text), ['http://foobar.com/document.html']);
+	t.deepEqual(m(text), ['http://foobar.com/document.html']);
 });
 
 test(`don't strip www when stripWWW is set to false`, t => {
 	const text = 'You can read http://www.foobar.com/document.html for more info';
-	t.deepEqual(fn(text, {stripWWW: false}), ['http://www.foobar.com/document.html']);
+	t.deepEqual(m(text, {stripWWW: false}), ['http://www.foobar.com/document.html']);
 });
 
 test('strip www when stripWWW is set to true', t => {
 	const text = 'You can read http://www.foobar.com/document.html for more info';
-	t.deepEqual(fn(text, {stripWWW: true}), ['http://foobar.com/document.html']);
+	t.deepEqual(m(text, {stripWWW: true}), ['http://foobar.com/document.html']);
 });
 
 test('strip www by default if stripWWW is not in opt', t => {
 	const text = 'You can read http://www.foobar.com/document.html for more info';
-	t.deepEqual(fn(text), ['http://foobar.com/document.html']);
+	t.deepEqual(m(text), ['http://foobar.com/document.html']);
 });
 
 test('finds urls beginning with `www`', t => {
 	const text = 'You can read www.foobar.com/document.html for more info';
-	t.deepEqual(fn(text), ['http://foobar.com/document.html']);
+	t.deepEqual(m(text), ['http://foobar.com/document.html']);
 });
