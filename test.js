@@ -2,6 +2,9 @@ import fs from 'fs';
 import test from 'ava';
 import m from './';
 
+// Fix Babel on Node.js 4
+const Set = global.Set;
+
 test('get unique cleaned-up urls from a string', t => {
 	t.deepEqual(m(fs.readFileSync('fixture.txt', 'utf8')), new Set([
 		'http://google.com',
