@@ -42,6 +42,8 @@ See the `normalize-url` [options](https://github.com/sindresorhus/normalize-url#
 ## Related
 
 - [get-urls-cli](https://github.com/sindresorhus/get-urls-cli) - CLI for this module
+- [linkify-urls](https://github.com/sindresorhus/linkify-urls) - Linkify URLs in text
+- [url-regex](https://github.com/kevva/url-regex) - Regular expression for matching URLs
 
 
 ## License
