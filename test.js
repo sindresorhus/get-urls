@@ -17,7 +17,6 @@ test('get unique cleaned-up urls from a string', t => {
 	]));
 });
 
-
 test(`get nested urls from query strings`, t => {
 	const text = 'You can read http://www.awin1.com/cread.php?a=b&p=https%3A%2F%2Fuk.hotels.com%2Fhotel%2Fdetails.html%3Ftab%3Ddescription%26hotelId%3D287452%26q-localised-check-in%3D15%2F12%2F2017%26q-localised-check-out%3D19%2F12%2F2017%26q-room-0-adults%3D2%26q-room-0-children%3D0%26locale%3Den_GB%26pos%3DHCOM_UK for more info';
 	t.deepEqual(

@@ -19,10 +19,12 @@ function _normalize(url, opts) {
 
 function _extractQueryParams(url, ret, opts) {
 	const qs = queryString.parse(queryString.extract(url));
-	for (let key in qs) {
-		const qsParam = qs[key];
-		if (qsParam.match(urlRegex)) {
-			ret.add(_normalize(qsParam, opts));
+	for (const key in qs) {
+		if (Object.prototype.hasOwnProperty.call(qs, key)) {
+			const qsParam = qs[key];
+			if (qsParam.match(urlRegex)) {
+				ret.add(_normalize(qsParam, opts));
+			}
 		}
 	}
 }
