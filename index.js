@@ -1,9 +1,28 @@
 'use strict';
-const urlRegex = require('url-regex');
+const urlRegex = require('url-regex')();
 const normalizeUrl = require('normalize-url');
+const queryString = require('query-string');
 
 module.exports = (str, opts) => {
-	const urls = str.match(urlRegex());
-	const ret = urls ? urls.map(url => normalizeUrl(url.trim().replace(/\.+$/, ''), opts)) : [];
-	return new Set(ret);
+	const urls = str.match(urlRegex) || [];
+	const ret = new Set();
+	urls.forEach(url => {
+		ret.add(_normalize(url, opts));
+		_extractQueryParams(url, ret, opts);
+	});
+	return ret;
 };
+
+function _normalize(url, opts) {
+	return normalizeUrl(url.trim().replace(/\.+$/, ''), opts);
+}
+
+function _extractQueryParams(url, ret, opts) {
+	const qs = queryString.parse(queryString.extract(url));
+	for (let key in qs) {
+		const qsParam = qs[key];
+		if (qsParam.match(urlRegex)) {
+			ret.add(_normalize(qsParam, opts));
+		}
+	}
+}

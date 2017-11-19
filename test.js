@@ -17,6 +17,18 @@ test('get unique cleaned-up urls from a string', t => {
 	]));
 });
 
+
+test(`get nested urls from query strings`, t => {
+	const text = 'You can read http://www.awin1.com/cread.php?a=b&p=https%3A%2F%2Fuk.hotels.com%2Fhotel%2Fdetails.html%3Ftab%3Ddescription%26hotelId%3D287452%26q-localised-check-in%3D15%2F12%2F2017%26q-localised-check-out%3D19%2F12%2F2017%26q-room-0-adults%3D2%26q-room-0-children%3D0%26locale%3Den_GB%26pos%3DHCOM_UK for more info';
+	t.deepEqual(
+		m(text, {stripFragment: false}),
+		new Set([
+			'http://awin1.com/cread.php?a=b&p=https://uk.hotels.com/hotel/details.html?tab=description&hotelId=287452&q-localised-check-in=15/12/2017&q-localised-check-out=19/12/2017&q-room-0-adults=2&q-room-0-children=0&locale=en_GB&pos=HCOM_UK',
+			'https://uk.hotels.com/hotel/details.html?hotelId=287452&locale=en_GB&pos=HCOM_UK&q-localised-check-in=15/12/2017&q-localised-check-out=19/12/2017&q-room-0-adults=2&q-room-0-children=0&tab=description'
+		])
+	);
+});
+
 test(`don't strip fragments when skipFragments is set to false`, t => {
 	const text = 'You can read http://www.foobar.com/document.html#about for more info';
 	t.deepEqual(
