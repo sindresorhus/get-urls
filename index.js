@@ -13,13 +13,17 @@ module.exports = (str, opts) => {
 	return ret;
 
 	function _add(url) {
-		ret.add(normalizeUrl(url.trim().replace(/\.+$/, ''), opts));
+		ret.add(_normalizeUrl(url));
+	}
+
+	function _normalizeUrl(url){
+		return normalizeUrl(_.unescape(url.trim().replace(/\.+$/, '')), opts);
 	}
 
 	function _extractQueryParams(url) {
-		const qs = queryString.parse(queryString.extract(url));
+		const qs = queryString.parse(queryString.extract(_normalizeUrl(url)));
 		for (const key in qs) {
-			if (Object.prototype.hasOwnProperty.call(qs, key) && qs[key] && qs[key].match(urlRegex)) {
+			if (Object.prototype.hasOwnProperty.call(qs, key) && qs[key] && qs[key].match && qs[key].match(urlRegex)) {
 				_add(qs[key]);
 			}
 		}
