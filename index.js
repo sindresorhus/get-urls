@@ -19,7 +19,7 @@ module.exports = (str, opts) => {
 	function _extractQueryParams(url) {
 		const qs = queryString.parse(queryString.extract(url));
 		for (const key in qs) {
-			if (Object.prototype.hasOwnProperty.call(qs, key) && qs[key].match(urlRegex)) {
+			if (Object.prototype.hasOwnProperty.call(qs, key) && qs[key] && qs[key].match(urlRegex)) {
 				_add(qs[key]);
 			}
 		}
