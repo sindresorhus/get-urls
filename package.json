@@ -31,7 +31,6 @@
   ],
   "dependencies": {
     "normalize-url": "^1.3.0",
-    "query-string": "^5.0.1",
     "unescape": "^1.0.1",
     "url-regex": "^4.0.0"
   },
