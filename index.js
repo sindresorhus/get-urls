@@ -1,5 +1,5 @@
 'use strict';
-const URL = require('url').Url;
+const URL = require('url');
 const urlRegex = require('url-regex');
 const normalizeUrl = require('normalize-url');
 const unescape = require('unescape');
@@ -7,26 +7,27 @@ const unescape = require('unescape');
 module.exports = (str, opts) => {
 	opts = opts || {};
 	const ret = new Set();
-
-	function _extractQueryParams(url) {
-		const qs = new URL().parse(url, true).query;
-		for (const key in qs) {
-			if (Object.prototype.hasOwnProperty.call(qs, key) && qs[key].match(urlRegex())) {
-				_add(qs[key]);
+	const add = url => ret.add(normalizeUrl(unescape(url.trim().replace(/\.+$/, '')), opts));
+	const urls = str.match(urlRegex()) || [];
+	for (const url of urls) {
+		add(url);
+		if (opts.getQueryParams) {
+			const qsUrls = extractQueryParams(url);
+			for (const qsUrl of qsUrls) {
+				add(qsUrl);
 			}
 		}
 	}
-
-	function _add(url) {
-		ret.add(normalizeUrl(unescape(url.trim().replace(/\.+$/, '')), opts));
-	}
-
-	const urls = str.match(urlRegex()) || [];
-	urls.forEach(url => {
-		_add(url);
-		if (opts.getQueryParams) {
-			_extractQueryParams(url);
-		}
-	});
 	return ret;
 };
+
+function extractQueryParams(url) {
+	const ret = new Set();
+	const qs = URL.parse(url, true).query;
+	for (const key in qs) {
+		if (Object.prototype.hasOwnProperty.call(qs, key) && urlRegex().test(qs[key])) {
+			ret.add(qs[key]);
+		}
+	}
+	return ret;
+}
