@@ -24,8 +24,8 @@ module.exports = (str, opts) => {
 function extractQueryParams(url) {
 	const ret = new Set();
 	const qs = URL.parse(url, true).query;
-	for (const key in qs) {
-		if (Object.prototype.hasOwnProperty.call(qs, key) && urlRegex().test(qs[key])) {
+	for (const key of Object.keys(qs)) {
+		if (urlRegex().test(qs[key])) {
 			ret.add(qs[key]);
 		}
 	}
