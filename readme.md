@@ -38,7 +38,7 @@ Type: `Object`
 
 All the `normalize-url` [options](https://github.com/sindresorhus/normalize-url#options) in addition to:
 
-#### getQueryParams
+#### extractFromQueryString
 
 Type: `boolean`<br>
 Default: `false`

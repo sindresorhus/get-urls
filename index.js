@@ -33,7 +33,7 @@ module.exports = (text, options) => {
 	for (const url of urls) {
 		add(url);
 
-		if (options.getQueryParams) {
+		if (options.extractFromQueryString) {
 			for (const qsUrl of getUrlsFromQueryParams(url)) {
 				add(qsUrl);
 			}
