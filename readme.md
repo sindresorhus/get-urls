@@ -36,7 +36,9 @@ Type: `string`
 
 Type: `Object`
 
-See the `normalize-url` [options](https://github.com/sindresorhus/normalize-url#options).
+All the `normalize-url` [options](https://github.com/sindresorhus/normalize-url#options) in addition to:
+
+- getQueryParams - extract urls that appear as query parameters in the found urls.
 
 
 ## Related
