@@ -8,7 +8,7 @@ The URLs will be [normalized](https://github.com/sindresorhus/normalize-url).
 ## Install
 
 ```
-$ npm install --save get-urls
+$ npm install get-urls
 ```
 
 
@@ -38,7 +38,12 @@ Type: `Object`
 
 All the `normalize-url` [options](https://github.com/sindresorhus/normalize-url#options) in addition to:
 
-- getQueryParams - extract urls that appear as query parameters in the found urls.
+#### getQueryParams
+
+Type: `boolean`<br>
+Default: `false`
+
+Extract URLs that appear as query parameters in the found URLs.
 
 
 ## Related
