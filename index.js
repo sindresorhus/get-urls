@@ -2,7 +2,6 @@
 const URL = require('url');
 const urlRegex = require('url-regex');
 const normalizeUrl = require('normalize-url');
-const escapeGoat = require('escape-goat');
 
 function getUrlsFromQueryParams(url) {
 	const ret = new Set();
@@ -26,7 +25,7 @@ module.exports = (text, options) => {
 	const ret = new Set();
 
 	const add = url => {
-		ret.add(normalizeUrl(escapeGoat.unescape(url.trim().replace(/\.+$/, '')), options));
+		ret.add(normalizeUrl(url.trim().replace(/\.+$/, ''), options));
 	};
 
 	const urls = text.match(urlRegex()) || [];
