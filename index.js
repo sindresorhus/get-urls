@@ -39,5 +39,15 @@ module.exports = (text, options) => {
 		}
 	}
 
+	if (options.exclude && Array.isArray(options.exclude)) {
+		for (let i = 0; i < options.exclude.length; i++) {
+			for (const item of ret) {
+				if (item.search(options.exclude[i]) > -1) {
+					ret.delete(item);
+					break;
+				}
+			}
+		}
+	}
 	return ret;
 };

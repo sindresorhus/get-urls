@@ -72,3 +72,16 @@ test('finds urls beginning with `www`', t => {
 	const text = 'You can read www.foobar.com/document.html for more info';
 	t.deepEqual(m(text), new Set(['http://foobar.com/document.html']));
 });
+
+test('exclude matching urls', t => {
+	const text = `${fs.readFileSync('fixture.txt', 'utf8')} http://w3.org/2000/svg, http://foobar.com/document.html, https://www.w3schools.com/`;
+	t.deepEqual(m(text, {exclude: ['http://w3.org/2000/svg', 'foobar.com', 'w3schools']}), new Set([
+		'http://google.com',
+		'http://todomvc.com',
+		'http://yeoman.io',
+		'http://twitter.com/sindresorhus',
+		'https://tastejs.com',
+		'http://example.com',
+		'http://github.com'
+	]));
+});
