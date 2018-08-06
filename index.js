@@ -25,7 +25,11 @@ module.exports = (text, options) => {
 	const ret = new Set();
 
 	const add = url => {
-		ret.add(normalizeUrl(url.trim().replace(/\.+$/, ''), options));
+		try {
+			ret.add(normalizeUrl(url.trim().replace(/\.+$/, ''), options));
+		} catch (e) {
+			console.log("ERROR: " + e.getMessage() + ": '" + url + "'");
+		}
 	};
 
 	const urls = text.match(urlRegex()) || [];
