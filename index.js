@@ -28,7 +28,7 @@ module.exports = (text, options) => {
 		try {
 			ret.add(normalizeUrl(url.trim().replace(/\.+$/, ''), options));
 		} catch (e) {
-			console.log("ERROR: " + e.getMessage() + ": '" + url + "'");
+			console.log("ERROR: " + e.message + ": '" + url + "' (" + e.toString() + ")");
 		}
 	};
 
