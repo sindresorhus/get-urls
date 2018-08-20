@@ -85,3 +85,10 @@ test('exclude matching urls', t => {
 		'http://github.com'
 	]));
 });
+
+test('throw TypeError for non-array `exclude` option', t => {
+	const error = t.throws(() => {
+		m('http://w3.org/2000/svg', {exclude: ''});
+	}, TypeError);
+	t.is(error.message, '`exclude` must be an array');
+});
