@@ -22,6 +22,10 @@ function getUrlsFromQueryParams(url) {
 module.exports = (text, options) => {
 	options = options || {};
 
+	if (typeof options.exclude !== 'undefined' && !Array.isArray(options.exclude)) {
+		throw new TypeError('`exclude` must be an array');
+	}
+
 	const ret = new Set();
 
 	const add = url => {
@@ -39,15 +43,15 @@ module.exports = (text, options) => {
 		}
 	}
 
-	if (options.exclude && Array.isArray(options.exclude)) {
-		for (let i = 0; i < options.exclude.length; i++) {
-			for (const item of ret) {
-				if (item.search(options.exclude[i]) > -1) {
-					ret.delete(item);
-					break;
-				}
+	for (const excludedItem of options.exclude || []) {
+		for (const item of ret) {
+			const regex = new RegExp(excludedItem);
+			if (regex.test(item)) {
+				ret.delete(item);
+				break;
 			}
 		}
 	}
+
 	return ret;
 };
