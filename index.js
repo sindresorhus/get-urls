@@ -1,16 +1,13 @@
 'use strict';
-const URL = require('url');
+const {URL} = require('url');
 const urlRegex = require('url-regex');
 const normalizeUrl = require('normalize-url');
 
 function getUrlsFromQueryParams(url) {
 	const ret = new Set();
+	const {searchParams} = (new URL(url));
 
-	// TODO: Use `(new URL(url)).searchParams` when targeting Node.js 8
-	const qs = URL.parse(url, true).query;
-
-	for (const key of Object.keys(qs)) {
-		const value = qs[key];
+	for (const [, value] of searchParams) {
 		if (urlRegex({exact: true}).test(value)) {
 			ret.add(value);
 		}
@@ -19,11 +16,9 @@ function getUrlsFromQueryParams(url) {
 	return ret;
 }
 
-module.exports = (text, options) => {
-	options = options || {};
-
+module.exports = (text, options = {}) => {
 	if (typeof options.exclude !== 'undefined' && !Array.isArray(options.exclude)) {
-		throw new TypeError('`exclude` must be an array');
+		throw new TypeError('The `exclude` option must be an array');
 	}
 
 	const ret = new Set();

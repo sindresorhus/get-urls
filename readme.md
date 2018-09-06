@@ -47,9 +47,9 @@ Extract URLs that appear as query parameters in the found URLs.
 
 #### exclude
 
-Type: `Array`<br>
+Type: `string[]`
 
-Exclude URLs that match the elements of the given array e.g. `['http://w3.org/2000/svg', 'foobar.com', 'w3schools']`
+Exclude URLs that match URLs in the given array.
 
 
 ## Related
