@@ -4,6 +4,8 @@
 
 The URLs will be [normalized](https://github.com/sindresorhus/normalize-url).
 
+*Don't use this for any kind of security-related validation.*
+
 
 ## Install
 
