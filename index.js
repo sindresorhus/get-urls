@@ -3,7 +3,7 @@ const {URL} = require('url');
 const urlRegex = require('url-regex');
 const normalizeUrl = require('normalize-url');
 
-function getUrlsFromQueryParams(url) {
+const getUrlsFromQueryParams = url => {
 	const ret = new Set();
 	const {searchParams} = (new URL(url));
 
@@ -14,7 +14,7 @@ function getUrlsFromQueryParams(url) {
 	}
 
 	return ret;
-}
+};
 
 module.exports = (text, options = {}) => {
 	if (typeof options.exclude !== 'undefined' && !Array.isArray(options.exclude)) {
@@ -34,7 +34,8 @@ module.exports = (text, options = {}) => {
 		add(url);
 
 		if (options.extractFromQueryString) {
-			for (const qsUrl of getUrlsFromQueryParams(url)) {
+			const qsUrls = getUrlsFromQueryParams(url);
+			for (const qsUrl of qsUrls) {
 				add(qsUrl);
 			}
 		}
