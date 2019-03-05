@@ -16,7 +16,7 @@ const getUrlsFromQueryParams = url => {
 	return ret;
 };
 
-module.exports = (text, options = {}) => {
+const getUrls = (text, options = {}) => {
 	if (typeof options.exclude !== 'undefined' && !Array.isArray(options.exclude)) {
 		throw new TypeError('The `exclude` option must be an array');
 	}
@@ -53,3 +53,6 @@ module.exports = (text, options = {}) => {
 
 	return ret;
 };
+
+module.exports = getUrls;
+module.exports.default = getUrls;
