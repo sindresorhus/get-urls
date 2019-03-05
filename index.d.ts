@@ -1,6 +1,6 @@
 import * as NormalizeURL from 'normalize-url';
 
-export interface GetURLsOptions extends NormalizeURL.Options {
+interface GetURLsOptions extends NormalizeURL.Options {
 	/**
 	 * Extract URLs that appear as query parameters in the found URLs
 	 *
@@ -14,4 +14,5 @@ export interface GetURLsOptions extends NormalizeURL.Options {
 	exclude?: string[];
 }
 
-export default function getUrls(text: string, options?: GetURLsOptions): Set<string>;
+declare function getUrls(text: string, options?: GetURLsOptions): Set<string>;
+export = getUrls;
