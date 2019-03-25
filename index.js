@@ -5,7 +5,7 @@ const normalizeUrl = require('normalize-url');
 
 const getUrlsFromQueryParams = url => {
 	const ret = new Set();
-	const {searchParams} = (new URL(url));
+	const {searchParams} = (new URL(url.replace(/^(\/\/|(www\.))/, 'http://$2')));
 
 	for (const [, value] of searchParams) {
 		if (urlRegex({exact: true}).test(value)) {
