@@ -17,6 +17,8 @@ $ npm install get-urls
 ## Usage
 
 ```js
+const getUrls = require('get-urls');
+
 const text = 'Lorem ipsum dolor sit amet, //sindresorhus.com consectetuer adipiscing http://yeoman.io elit.';
 
 getUrls(text);
@@ -49,7 +51,8 @@ Extract URLs that appear as query parameters in the found URLs.
 
 #### exclude
 
-Type: `string[]`
+Type: `string[]`<br>
+Default: `[]`
 
 Exclude URLs that match URLs in the given array.
 
