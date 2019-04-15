@@ -91,3 +91,30 @@ test('throw TypeError for non-array `exclude` option', t => {
 		getUrls('http://w3.org/2000/svg', {exclude: ''});
 	}, 'The `exclude` option must be an array');
 });
+
+test('get urls without scheme', t => {
+	const text = 'Lorem ipsum dolor sit amet, //sindresorhus.com consectetuer adipiscing http://yeoman.io elit. www.github.com';
+	t.deepEqual(
+		getUrls(text, {
+			extractFromQueryString: true
+		}),
+		new Set([
+			'http://sindresorhus.com',
+			'http://yeoman.io',
+			'http://github.com'
+		])
+	);
+});
+
+test('get schemeless url from query string', t => {
+	const text = 'You can read http://www.awin1.com/cread.php?a=b&p=%2F%2Fuk.hotels.com%2Fhotel%2Fdetails.html%3Ftab%3Ddescription%26hotelId%3D287452%26q-localised-check-in%3D15%2F12%2F2017%26q-localised-check-out%3D19%2F12%2F2017%26q-room-0-adults%3D2%26q-room-0-children%3D0%26locale%3Den_GB%26pos%3DHCOM_UK for more info';
+	t.deepEqual(
+		getUrls(text, {
+			extractFromQueryString: true
+		}),
+		new Set([
+			'http://awin1.com/cread.php?a=b&p=%2F%2Fuk.hotels.com%2Fhotel%2Fdetails.html%3Ftab%3Ddescription%26hotelId%3D287452%26q-localised-check-in%3D15%2F12%2F2017%26q-localised-check-out%3D19%2F12%2F2017%26q-room-0-adults%3D2%26q-room-0-children%3D0%26locale%3Den_GB%26pos%3DHCOM_UK',
+			'http://uk.hotels.com/hotel/details.html?hotelId=287452&locale=en_GB&pos=HCOM_UK&q-localised-check-in=15%2F12%2F2017&q-localised-check-out=19%2F12%2F2017&q-room-0-adults=2&q-room-0-children=0&tab=description'
+		])
+	);
+});
