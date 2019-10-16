@@ -56,6 +56,13 @@ Default: `[]`
 
 Exclude URLs that match URLs in the given array.
 
+#### strictUrlParsing
+
+Type: `boolean`<br>
+Default: `true`
+
+Parse URLs without requiring a leading `www` or protocol, as per
+the strict flag in url-regex
 
 ## Related
 
