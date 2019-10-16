@@ -15,6 +15,14 @@ declare namespace getUrls {
 		@default []
 		*/
 		readonly exclude?: string[];
+
+		/**
+		 Parse URLs without requiring a leading `www` or protocol, as per
+		 the strict flag in url-regex
+
+		 @default: true
+		 */
+		readonly strictUrlParsing?: boolean;
 	}
 }
 
