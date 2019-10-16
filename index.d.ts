@@ -19,7 +19,9 @@ declare namespace getUrls {
 		/**
 		 Require a leading `www` or scheme for a string to be considered
 		 a URL, as per the strict flag in url-regex. Does not affect URLs
-		 in query parameters if using the `extractFromQueryString` option.
+		 in query parameters if using the `extractFromQueryString` option. When
+		 `false`, matches against a list of valid TLDs, so it will match URLs like
+		 `unicorn.education`
 
 		 @default: true
 		 */
