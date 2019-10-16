@@ -29,7 +29,12 @@ module.exports = (text, options = {}) => {
 		} catch (_) {}
 	};
 
-	const urls = text.match(urlRegex()) || [];
+	const urls = text.match(options.strictUrlParsing === undefined ?
+		urlRegex() :
+		urlRegex({
+			strict: options.strictUrlParsing
+		})
+	) || [];
 	for (const url of urls) {
 		add(url);
 
