@@ -56,12 +56,12 @@ Default: `[]`
 
 Exclude URLs that match URLs in the given array.
 
-#### requireScheme
+#### requireSchemeOrWww
 
 Type: `boolean`<br>
 Default: `true`
 
-Require a leading `www` or protocol for a string to be considered a URL, as per
+Require a leading `www` or scheme for a string to be considered a URL, as per
 the strict flag in url-regex. Does not affect URLs in query parameters if using
 the `extractFromQueryString` option.
 

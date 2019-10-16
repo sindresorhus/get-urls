@@ -17,13 +17,13 @@ declare namespace getUrls {
 		readonly exclude?: string[];
 
 		/**
-		 Require a leading `www` or protocol for a string to be considered
+		 Require a leading `www` or scheme for a string to be considered
 		 a URL, as per the strict flag in url-regex. Does not affect URLs
 		 in query parameters if using the `extractFromQueryString` option.
 
 		 @default: true
 		 */
-		readonly requireScheme?: boolean;
+		readonly requireSchemeOrWww?: boolean;
 	}
 }
 

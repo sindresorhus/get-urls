@@ -30,8 +30,8 @@ module.exports = (text, options = {}) => {
 	};
 
 	const urls = text.match(
-		urlRegex(options.requireScheme === undefined ? undefined : {
-			strict: options.requireScheme
+		urlRegex(options.requireSchemeOrWww === undefined ? undefined : {
+			strict: options.requireSchemeOrWww
 		})
 	) || [];
 	for (const url of urls) {
