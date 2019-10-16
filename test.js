@@ -119,11 +119,11 @@ test('get schemeless url from query string', t => {
 	);
 });
 
-test('strictUrlParsing turned off', t => {
+test('requireScheme turned off', t => {
 	const text = 'Here is a URL: sindresorhus.com here is another: unicorn.education';
 	t.deepEqual(
 		getUrls(text, {
-			strictUrlParsing: false
+			requireScheme: false
 		}), new Set([
 			'http://sindresorhus.com',
 			'http://unicorn.education'

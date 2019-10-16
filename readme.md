@@ -56,13 +56,14 @@ Default: `[]`
 
 Exclude URLs that match URLs in the given array.
 
-#### strictUrlParsing
+#### requireScheme
 
 Type: `boolean`<br>
 Default: `true`
 
-Parse URLs without requiring a leading `www` or protocol, as per
-the strict flag in url-regex
+Require a leading `www` or protocol for a string to be considered a URL, as per
+the strict flag in url-regex. Does not affect URLs in query parameters if using
+the `extractFromQueryString` option.
 
 ## Related
 
