@@ -29,9 +29,8 @@ module.exports = (text, options = {}) => {
 		} catch (_) {}
 	};
 
-	const urls = text.match(options.strictUrlParsing === undefined ?
-		urlRegex() :
-		urlRegex({
+	const urls = text.match(
+		urlRegex(options.strictUrlParsing === undefined ? undefined : {
 			strict: options.strictUrlParsing
 		})
 	) || [];
