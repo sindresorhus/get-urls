@@ -61,9 +61,10 @@ Exclude URLs that match URLs in the given array.
 Type: `boolean`<br>
 Default: `true`
 
-Require a leading `www` or scheme for a string to be considered a URL, as per
-the strict flag in url-regex. Does not affect URLs in query parameters if using
-the `extractFromQueryString` option.
+Require URLs to have a scheme or leading `www.` to be considered an URL. When `false`, matches against a list of valid TLDs, so it will match URLs like `unicorn.education`.
+
+Does not affect URLs in query parameters if using the `extractFromQueryString` option.
+
 
 ## Related
 
