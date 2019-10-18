@@ -56,6 +56,15 @@ Default: `[]`
 
 Exclude URLs that match URLs in the given array.
 
+#### requireSchemeOrWww
+
+Type: `boolean`<br>
+Default: `true`
+
+Require URLs to have a scheme or leading `www.` to be considered an URL. When `false`, matches against a list of valid TLDs, so it will match URLs like `unicorn.education`.
+
+Does not affect URLs in query parameters if using the `extractFromQueryString` option.
+
 
 ## Related
 

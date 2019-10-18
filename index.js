@@ -29,7 +29,11 @@ module.exports = (text, options = {}) => {
 		} catch (_) {}
 	};
 
-	const urls = text.match(urlRegex()) || [];
+	const urls = text.match(
+		urlRegex(options.requireSchemeOrWww === undefined ? undefined : {
+			strict: options.requireSchemeOrWww
+		})
+	) || [];
 	for (const url of urls) {
 		add(url);
 

@@ -118,3 +118,15 @@ test('get schemeless url from query string', t => {
 		])
 	);
 });
+
+test('requireSchemeOrWww turned off', t => {
+	const text = 'Here is a URL: sindresorhus.com here is another: unicorn.education';
+	t.deepEqual(
+		getUrls(text, {
+			requireSchemeOrWww: false
+		}), new Set([
+			'http://sindresorhus.com',
+			'http://unicorn.education'
+		])
+	);
+});
