@@ -17,14 +17,12 @@ declare namespace getUrls {
 		readonly exclude?: string[];
 
 		/**
-		 Require a leading `www` or scheme for a string to be considered
-		 a URL, as per the strict flag in url-regex. Does not affect URLs
-		 in query parameters if using the `extractFromQueryString` option. When
-		 `false`, matches against a list of valid TLDs, so it will match URLs like
-		 `unicorn.education`
+		Require URLs to have a scheme or leading `www.` to be considered an URL. When `false`, matches against a list of valid TLDs, so it will match URLs like `unicorn.education`.
 
-		 @default: true
-		 */
+		Does not affect URLs in query parameters if using the `extractFromQueryString` option.
+
+		@default: true
+		*/
 		readonly requireSchemeOrWww?: boolean;
 	}
 }
