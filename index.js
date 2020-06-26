@@ -16,7 +16,7 @@ const getUrlsFromQueryParams = url => {
 	return ret;
 };
 
-module.exports = (text, options = {}) => {
+module.exports = (text = '', options = {}) => {
 	if (typeof options.exclude !== 'undefined' && !Array.isArray(options.exclude)) {
 		throw new TypeError('The `exclude` option must be an array');
 	}

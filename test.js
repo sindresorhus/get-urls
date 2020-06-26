@@ -130,3 +130,7 @@ test('requireSchemeOrWww turned off', t => {
 		])
 	);
 });
+
+test('do not throw error on empty text', t => {
+	t.notThrows(() => getUrls());
+});
