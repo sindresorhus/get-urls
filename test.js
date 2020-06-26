@@ -130,3 +130,9 @@ test('requireSchemeOrWww turned off', t => {
 		])
 	);
 });
+
+test('do not throw error on UPPER CASE url', t => {
+	const url = 'WWW.POS.COM';
+
+	t.notThrows(() => getUrls(url, {extractFromQueryString: true}));
+});
