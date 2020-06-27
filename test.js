@@ -131,6 +131,14 @@ test('requireSchemeOrWww turned off', t => {
 	);
 });
 
+test('supports upper case URL', t => {
+	const url = 'WWW.POS.COM';
+
+	t.notThrows(() => {
+		getUrls(url, {extractFromQueryString: true});
+	});
+});
+
 test('filter all items from options.exclude', t => {
 	const text = `
 		http://domain.com/pic/uploadimg/2019-3/PS/818201903010604.jpg
