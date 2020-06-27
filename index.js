@@ -50,7 +50,6 @@ module.exports = (text, options = {}) => {
 			const regex = new RegExp(excludedItem);
 			if (regex.test(item)) {
 				ret.delete(item);
-				break;
 			}
 		}
 	}

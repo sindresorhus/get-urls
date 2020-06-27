@@ -138,3 +138,23 @@ test('supports upper case URL', t => {
 		getUrls(url, {extractFromQueryString: true});
 	});
 });
+
+test('filter all items from options.exclude', t => {
+	const text = `
+		http://domain.com/pic/uploadimg/2019-3/PS/818201903010604.jpg
+		http://domain.com/81820190301/818201903010604/index.m3u8
+		http://domain.com/pic/uploadimg/2019-3/PS/818201903010606.jpg
+		http://domain.com/81820190301/818201903010606/index.m3u8
+		http://domain.com/pic/uploadimg/2019-3/PS/818201903010615.jpg
+	`;
+
+	const exclude = ['.*jpg'];
+
+	t.deepEqual(
+		getUrls(text, {exclude}),
+		new Set([
+			'http://domain.com/81820190301/818201903010604/index.m3u8',
+			'http://domain.com/81820190301/818201903010606/index.m3u8'
+		])
+	);
+});
