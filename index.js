@@ -5,7 +5,7 @@ const normalizeUrl = require('normalize-url');
 
 const getUrlsFromQueryParams = url => {
 	const ret = new Set();
-	const {searchParams} = (new URL(url.replace(/^(\/\/|(www\.))/, 'http://$2')));
+	const {searchParams} = (new URL(url.replace(/^(\/\/|(www\.))/i, 'http://$2')));
 
 	for (const [, value] of searchParams) {
 		if (urlRegex({exact: true}).test(value)) {
@@ -16,7 +16,11 @@ const getUrlsFromQueryParams = url => {
 	return ret;
 };
 
-module.exports = (text = '', options = {}) => {
+module.exports = (text, options = {}) => {
+	if (typeof text !== 'string') {
+		throw new TypeError(`The text argument should be a string, got ${typeof text}`);
+	}
+
 	if (typeof options.exclude !== 'undefined' && !Array.isArray(options.exclude)) {
 		throw new TypeError('The `exclude` option must be an array');
 	}
@@ -50,7 +54,6 @@ module.exports = (text = '', options = {}) => {
 			const regex = new RegExp(excludedItem);
 			if (regex.test(item)) {
 				ret.delete(item);
-				break;
 			}
 		}
 	}
