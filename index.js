@@ -18,7 +18,7 @@ const getUrlsFromQueryParams = url => {
 
 module.exports = (text, options = {}) => {
 	if (typeof text !== 'string') {
-		throw new TypeError(`The text argument should be a string, got ${typeof text}`);
+		throw new TypeError(`The \`text\` argument should be a string, got ${typeof text}`);
 	}
 
 	if (typeof options.exclude !== 'undefined' && !Array.isArray(options.exclude)) {
