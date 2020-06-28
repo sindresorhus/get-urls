@@ -158,3 +158,9 @@ test('filter all items from options.exclude', t => {
 		])
 	);
 });
+
+test('throw an error when the text argument is not a string', t => {
+	t.throws(() => {
+		getUrls();
+	}, TypeError);
+});
