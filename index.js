@@ -1,6 +1,6 @@
 'use strict';
 const {URL} = require('url');
-const urlRegex = require('url-regex');
+const urlRegex = require('url-regex-safe');
 const normalizeUrl = require('normalize-url');
 
 const getUrlsFromQueryParams = url => {
@@ -30,7 +30,9 @@ module.exports = (text, options = {}) => {
 	const add = url => {
 		try {
 			ret.add(normalizeUrl(url.trim().replace(/\.+$/, ''), options));
-		} catch (_) {}
+		} catch (error) {
+			console.error(error);
+		}
 	};
 
 	const urls = text.match(
