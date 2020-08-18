@@ -31,7 +31,6 @@
 	],
 	"dependencies": {
 		"normalize-url": "^4.3.0",
-		"re2": "^1.15.4",
 		"url-regex-safe": "0.0.5"
 	},
 	"devDependencies": {
