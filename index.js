@@ -2,17 +2,17 @@
 const urlRegex = require('url-regex-safe');
 const normalizeUrl = require('normalize-url');
 
-const getUrlsFromQueryParams = url => {
-	const ret = new Set();
+const getUrlsFromQueryParameters = url => {
+	const returnValue = new Set();
 	const {searchParams} = (new URL(url.replace(/^(?:\/\/|(?:www\.))/i, 'http://$2')));
 
 	for (const [, value] of searchParams) {
 		if (urlRegex({exact: true}).test(value)) {
-			ret.add(value);
+			returnValue.add(value);
 		}
 	}
 
-	return ret;
+	return returnValue;
 };
 
 module.exports = (text, options = {}) => {
@@ -24,12 +24,12 @@ module.exports = (text, options = {}) => {
 		throw new TypeError('The `exclude` option must be an array');
 	}
 
-	const ret = new Set();
+	const returnValue = new Set();
 
 	const add = url => {
 		try {
-			ret.add(normalizeUrl(url.trim().replace(/\.+$/, ''), options));
-		} catch (_) {}
+			returnValue.add(normalizeUrl(url.trim().replace(/\.+$/, ''), options));
+		} catch {}
 	};
 
 	const urls = text.match(
@@ -41,7 +41,7 @@ module.exports = (text, options = {}) => {
 		add(url);
 
 		if (options.extractFromQueryString) {
-			const qsUrls = getUrlsFromQueryParams(url);
+			const qsUrls = getUrlsFromQueryParameters(url);
 			for (const qsUrl of qsUrls) {
 				add(qsUrl);
 			}
@@ -49,13 +49,13 @@ module.exports = (text, options = {}) => {
 	}
 
 	for (const excludedItem of options.exclude || []) {
-		for (const item of ret) {
+		for (const item of returnValue) {
 			const regex = new RegExp(excludedItem);
 			if (regex.test(item)) {
-				ret.delete(item);
+				returnValue.delete(item);
 			}
 		}
 	}
 
-	return ret;
+	return returnValue;
 };

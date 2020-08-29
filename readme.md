@@ -1,4 +1,4 @@
-# get-urls [![Build Status](https://travis-ci.org/sindresorhus/get-urls.svg?branch=master)](https://travis-ci.org/sindresorhus/get-urls)
+# get-urls [![Build Status](https://travis-ci.com/sindresorhus/get-urls.svg?branch=master)](https://travis-ci.com/github/sindresorhus/get-urls)
 
 > Get all URLs in a string
 
@@ -6,13 +6,11 @@ The URLs will be [normalized](https://github.com/sindresorhus/normalize-url).
 
 *Don't use this for any kind of security-related validation.*
 
-
 ## Install
 
 ```
 $ npm install get-urls
 ```
-
 
 ## Usage
 
@@ -24,7 +22,6 @@ const text = 'Lorem ipsum dolor sit amet, //sindresorhus.com consectetuer adipis
 getUrls(text);
 //=> Set {'http://sindresorhus.com', 'http://yeoman.io'}
 ```
-
 
 ## API
 
@@ -44,27 +41,26 @@ All the `normalize-url` [options](https://github.com/sindresorhus/normalize-url#
 
 #### extractFromQueryString
 
-Type: `boolean`<br>
+Type: `boolean`\
 Default: `false`
 
 Extract URLs that appear as query parameters in the found URLs.
 
 #### exclude
 
-Type: `string[]`<br>
+Type: `string[]`\
 Default: `[]`
 
 Exclude URLs that match URLs in the given array.
 
 #### requireSchemeOrWww
 
-Type: `boolean`<br>
+Type: `boolean`\
 Default: `true`
 
 Require URLs to have a scheme or leading `www.` to be considered an URL. When `false`, matches against a list of valid TLDs, so it will match URLs like `unicorn.education`.
 
 Does not affect URLs in query parameters if using the `extractFromQueryString` option.
-
 
 ## Related
 

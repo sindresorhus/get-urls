@@ -3,19 +3,23 @@ import test from 'ava';
 import getUrls from '.';
 
 test('get unique cleaned-up urls from a string', t => {
-	t.deepEqual(getUrls(fs.readFileSync('fixture.txt', 'utf8')), new Set([
-		'http://google.com',
-		'http://todomvc.com',
-		'http://yeoman.io',
-		'http://twitter.com/sindresorhus',
-		'https://tastejs.com',
-		'http://example.com',
-		'http://github.com'
-	]));
+	t.deepEqual(
+		getUrls(fs.readFileSync('fixture.txt', 'utf8')),
+		new Set([
+			'http://google.com',
+			'http://todomvc.com',
+			'http://yeoman.io',
+			'http://twitter.com/sindresorhus',
+			'https://tastejs.com',
+			'http://example.com',
+			'http://github.com'
+		])
+	);
 });
 
 test('do not get nested urls from query strings', t => {
 	const text = 'You can read http://www.awin1.com/cread.php?a=b&p=https%3A%2F%2Fuk.hotels.com%2Fhotel%2Fdetails.html%3Ftab%3Ddescription%26hotelId%3D287452%26q-localised-check-in%3D15%2F12%2F2017%26q-localised-check-out%3D19%2F12%2F2017%26q-room-0-adults%3D2%26q-room-0-children%3D0%26locale%3Den_GB%26pos%3DHCOM_UK for more info';
+
 	t.deepEqual(
 		getUrls(text),
 		new Set([
@@ -26,6 +30,7 @@ test('do not get nested urls from query strings', t => {
 
 test('get nested urls from query strings', t => {
 	const text = 'You can read http://www.awin1.com/cread.php?a=b&p=https%3A%2F%2Fuk.hotels.com%2Fhotel%2Fdetails.html%3Ftab%3Ddescription%26hotelId%3D287452%26q-localised-check-in%3D15%2F12%2F2017%26q-localised-check-out%3D19%2F12%2F2017%26q-room-0-adults%3D2%26q-room-0-children%3D0%26locale%3Den_GB%26pos%3DHCOM_UK for more info';
+
 	t.deepEqual(
 		getUrls(text, {extractFromQueryString: true}),
 		new Set([
@@ -37,6 +42,7 @@ test('get nested urls from query strings', t => {
 
 test('don\'t strip hash when stripHash is set to false', t => {
 	const text = 'You can read http://www.foobar.com/document.html#about for more info';
+
 	t.deepEqual(
 		getUrls(text, {stripHash: false}),
 		new Set(['http://foobar.com/document.html#about'])
@@ -75,15 +81,19 @@ test('finds urls beginning with `www`', t => {
 
 test('exclude matching urls', t => {
 	const text = `${fs.readFileSync('fixture.txt', 'utf8')} http://w3.org/2000/svg, http://foobar.com/document.html, https://www.w3schools.com/`;
-	t.deepEqual(getUrls(text, {exclude: ['http://w3.org/2000/svg', 'foobar.com', 'w3schools']}), new Set([
-		'http://google.com',
-		'http://todomvc.com',
-		'http://yeoman.io',
-		'http://twitter.com/sindresorhus',
-		'https://tastejs.com',
-		'http://example.com',
-		'http://github.com'
-	]));
+
+	t.deepEqual(
+		getUrls(text, {exclude: ['http://w3.org/2000/svg', 'foobar.com', 'w3schools']}),
+		new Set([
+			'http://google.com',
+			'http://todomvc.com',
+			'http://yeoman.io',
+			'http://twitter.com/sindresorhus',
+			'https://tastejs.com',
+			'http://example.com',
+			'http://github.com'
+		])
+	);
 });
 
 test('throw TypeError for non-array `exclude` option', t => {
@@ -94,6 +104,7 @@ test('throw TypeError for non-array `exclude` option', t => {
 
 test('get urls without scheme', t => {
 	const text = 'Lorem ipsum dolor sit amet, //sindresorhus.com consectetuer adipiscing http://yeoman.io elit. www.github.com';
+
 	t.deepEqual(
 		getUrls(text, {
 			extractFromQueryString: true
@@ -108,6 +119,7 @@ test('get urls without scheme', t => {
 
 test('get schemeless url from query string', t => {
 	const text = 'You can read http://www.awin1.com/cread.php?a=b&p=%2F%2Fuk.hotels.com%2Fhotel%2Fdetails.html%3Ftab%3Ddescription%26hotelId%3D287452%26q-localised-check-in%3D15%2F12%2F2017%26q-localised-check-out%3D19%2F12%2F2017%26q-room-0-adults%3D2%26q-room-0-children%3D0%26locale%3Den_GB%26pos%3DHCOM_UK for more info';
+
 	t.deepEqual(
 		getUrls(text, {
 			extractFromQueryString: true
@@ -121,10 +133,12 @@ test('get schemeless url from query string', t => {
 
 test('requireSchemeOrWww turned off', t => {
 	const text = 'Here is a URL: sindresorhus.com here is another: unicorn.education';
+
 	t.deepEqual(
 		getUrls(text, {
 			requireSchemeOrWww: false
-		}), new Set([
+		}),
+		new Set([
 			'http://sindresorhus.com',
 			'http://unicorn.education'
 		])
@@ -163,4 +177,27 @@ test('throw an error when the text argument is not a string', t => {
 	t.throws(() => {
 		getUrls();
 	}, TypeError);
+});
+
+test('handles parens', t => {
+	const text = 'foo https://sindresorhus.com/some/example) foo';
+
+	t.deepEqual(
+		getUrls(text),
+		new Set([
+			'https://sindresorhus.com/some/example'
+		])
+	);
+});
+
+test('handles Markdown', t => {
+	const text = 'foo [![](https://sindresorhus.com/unicorn.png)](https://sindresorhus.com/?foo=bar) foo';
+
+	t.deepEqual(
+		getUrls(text),
+		new Set([
+			'https://sindresorhus.com/unicorn.png',
+			'https://sindresorhus.com/?foo=bar'
+		])
+	);
 });

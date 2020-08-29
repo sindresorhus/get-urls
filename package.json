@@ -4,10 +4,11 @@
 	"description": "Get all URLs in a string",
 	"license": "MIT",
 	"repository": "sindresorhus/get-urls",
+	"funding": "https://github.com/sponsors/sindresorhus",
 	"author": {
 		"name": "Sindre Sorhus",
 		"email": "sindresorhus@gmail.com",
-		"url": "sindresorhus.com"
+		"url": "https://sindresorhus.com"
 	},
 	"engines": {
 		"node": ">=10.12.0"
@@ -30,12 +31,12 @@
 		"string"
 	],
 	"dependencies": {
-		"normalize-url": "^4.3.0",
-		"url-regex-safe": "0.0.5"
+		"normalize-url": "^5.1.0",
+		"url-regex-safe": "^1.0.2"
 	},
 	"devDependencies": {
 		"ava": "^2.4.0",
-		"tsd": "^0.9.0",
-		"xo": "^0.25.3"
+		"tsd": "^0.13.1",
+		"xo": "^0.33.0"
 	}
 }
