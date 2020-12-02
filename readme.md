@@ -1,4 +1,4 @@
-# get-urls [![Build Status](https://travis-ci.com/sindresorhus/get-urls.svg?branch=master)](https://travis-ci.com/github/sindresorhus/get-urls)
+# get-urls
 
 > Get all URLs in a string
 
