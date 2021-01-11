@@ -56,7 +56,7 @@ Exclude URLs that match URLs in the given array.
 #### requireSchemeOrWww
 
 Type: `boolean`\
-Default: `true`
+Default: `false`
 
 Require URLs to have a scheme or leading `www.` to be considered an URL. When `false`, matches against a list of valid TLDs, so it will match URLs like `unicorn.education`.
 
