@@ -21,7 +21,7 @@ declare namespace getUrls {
 
 		Does not affect URLs in query parameters if using the `extractFromQueryString` option.
 
-		@default true
+		@default false
 		*/
 		readonly requireSchemeOrWww?: boolean;
 	}
