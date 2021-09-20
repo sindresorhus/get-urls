@@ -9,7 +9,7 @@ The URLs will be [normalized](https://github.com/sindresorhus/normalize-url).
 ## Install
 
 ```
-$ npm install get-urls
+$ npm install esychov/get-urls
 ```
 
 ## Usage

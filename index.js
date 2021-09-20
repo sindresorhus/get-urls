@@ -24,11 +24,16 @@ module.exports = (text, options = {}) => {
 		throw new TypeError('The `exclude` option must be an array');
 	}
 
+	if (typeof options.normalizeUrl === 'undefined') {
+		options.normalizeUrl = true;
+	}
+
 	const returnValue = new Set();
 
 	const add = url => {
 		try {
-			returnValue.add(normalizeUrl(url.trim().replace(/\.+$/, ''), options));
+			const urlValue = url.trim().replace(/\.+$/, '');
+			returnValue.add(options.normalizeUrl ? normalizeUrl(urlValue, options) : urlValue);
 		} catch {}
 	};
 

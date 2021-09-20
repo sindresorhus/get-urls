@@ -24,6 +24,13 @@ declare namespace getUrls {
 		@default false
 		*/
 		readonly requireSchemeOrWww?: boolean;
+
+		/**
+		 * Normalizes url if true
+		 *
+		 * @default true
+		 */
+		readonly normalizeUrl?: boolean;
 	}
 }
 
