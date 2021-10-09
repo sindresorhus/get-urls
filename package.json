@@ -32,7 +32,7 @@
 	],
 	"dependencies": {
 		"normalize-url": "^5.1.0",
-		"url-regex-safe": "^1.0.2"
+		"url-regex-safe": "^2.0.2"
 	},
 	"devDependencies": {
 		"ava": "^2.4.0",
