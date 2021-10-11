@@ -6,6 +6,8 @@ The URLs will be [normalized](https://github.com/sindresorhus/normalize-url).
 
 *Don't use this for any kind of security-related validation.*
 
+Please note the [known limitation](https://github.com/niftylettuce/url-regex-safe#limitations). You can work around this by setting `requireSchemeOrWww` to `true`.
+
 ## Install
 
 ```
