@@ -24,6 +24,13 @@ declare namespace getUrls {
 		@default false
 		*/
 		readonly requireSchemeOrWww?: boolean;
+
+		/**
+		Expect URLs with parenthesis to parse it correctly.
+
+		@default false
+		*/
+		readonly parseParenthesis?: boolean;
 	}
 }
 

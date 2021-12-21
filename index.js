@@ -32,10 +32,18 @@ module.exports = (text, options = {}) => {
 		} catch {}
 	};
 
+	const urlRegexOptions = {};
+
+	if (options.requireSchemeOrWww !== undefined) {
+		urlRegexOptions.strict = options.requireSchemeOrWww;
+	}
+
+	if (options.parseParenthesis) {
+		urlRegexOptions.parens = options.parseParenthesis;
+	}
+
 	const urls = text.match(
-		urlRegex(options.requireSchemeOrWww === undefined ? undefined : {
-			strict: options.requireSchemeOrWww
-		})
+		urlRegex(Object.keys(urlRegexOptions) === 0 ? undefined : urlRegexOptions)
 	) || [];
 	for (const url of urls) {
 		add(url);

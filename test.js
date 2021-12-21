@@ -201,3 +201,15 @@ test('handles Markdown', t => {
 		])
 	);
 });
+
+test('handles URLs with parenthesis', t => {
+	const text = 'Accessed on 4/12/2021 at https://website.org/What-is-MS/Types-of-MS/Clinically-Isolated-Syndrome-(CIS) and one more URL https://website.org/What-is-MS/Types-of-MS/Clinically-Isolated-Syndrome-(CIS)/some-path';
+
+	t.deepEqual(
+		getUrls(text, {parseParenthesis: true}),
+		new Set([
+			'https://website.org/What-is-MS/Types-of-MS/Clinically-Isolated-Syndrome-(CIS)',
+			'https://website.org/What-is-MS/Types-of-MS/Clinically-Isolated-Syndrome-(CIS)/some-path'
+		])
+	);
+});
