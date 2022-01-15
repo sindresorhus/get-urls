@@ -1,6 +1,6 @@
-import fs from 'fs';
+import fs from 'node:fs';
 import test from 'ava';
-import getUrls from '.';
+import getUrls from './index.js';
 
 test('get unique cleaned-up urls from a string', t => {
 	t.deepEqual(
@@ -12,8 +12,8 @@ test('get unique cleaned-up urls from a string', t => {
 			'http://twitter.com/sindresorhus',
 			'https://tastejs.com',
 			'http://example.com',
-			'http://github.com'
-		])
+			'http://github.com',
+		]),
 	);
 });
 
@@ -23,8 +23,8 @@ test('do not get nested urls from query strings', t => {
 	t.deepEqual(
 		getUrls(text),
 		new Set([
-			'http://awin1.com/cread.php?a=b&p=https%3A%2F%2Fuk.hotels.com%2Fhotel%2Fdetails.html%3Ftab%3Ddescription%26hotelId%3D287452%26q-localised-check-in%3D15%2F12%2F2017%26q-localised-check-out%3D19%2F12%2F2017%26q-room-0-adults%3D2%26q-room-0-children%3D0%26locale%3Den_GB%26pos%3DHCOM_UK'
-		])
+			'http://awin1.com/cread.php?a=b&p=https%3A%2F%2Fuk.hotels.com%2Fhotel%2Fdetails.html%3Ftab%3Ddescription%26hotelId%3D287452%26q-localised-check-in%3D15%2F12%2F2017%26q-localised-check-out%3D19%2F12%2F2017%26q-room-0-adults%3D2%26q-room-0-children%3D0%26locale%3Den_GB%26pos%3DHCOM_UK',
+		]),
 	);
 });
 
@@ -35,8 +35,8 @@ test('get nested urls from query strings', t => {
 		getUrls(text, {extractFromQueryString: true}),
 		new Set([
 			'http://awin1.com/cread.php?a=b&p=https%3A%2F%2Fuk.hotels.com%2Fhotel%2Fdetails.html%3Ftab%3Ddescription%26hotelId%3D287452%26q-localised-check-in%3D15%2F12%2F2017%26q-localised-check-out%3D19%2F12%2F2017%26q-room-0-adults%3D2%26q-room-0-children%3D0%26locale%3Den_GB%26pos%3DHCOM_UK',
-			'https://uk.hotels.com/hotel/details.html?hotelId=287452&locale=en_GB&pos=HCOM_UK&q-localised-check-in=15%2F12%2F2017&q-localised-check-out=19%2F12%2F2017&q-room-0-adults=2&q-room-0-children=0&tab=description'
-		])
+			'https://uk.hotels.com/hotel/details.html?hotelId=287452&locale=en_GB&pos=HCOM_UK&q-localised-check-in=15%2F12%2F2017&q-localised-check-out=19%2F12%2F2017&q-room-0-adults=2&q-room-0-children=0&tab=description',
+		]),
 	);
 });
 
@@ -45,7 +45,7 @@ test('don\'t strip hash when stripHash is set to false', t => {
 
 	t.deepEqual(
 		getUrls(text, {stripHash: false}),
-		new Set(['http://foobar.com/document.html#about'])
+		new Set(['http://foobar.com/document.html#about']),
 	);
 });
 
@@ -91,15 +91,17 @@ test('exclude matching urls', t => {
 			'http://twitter.com/sindresorhus',
 			'https://tastejs.com',
 			'http://example.com',
-			'http://github.com'
-		])
+			'http://github.com',
+		]),
 	);
 });
 
 test('throw TypeError for non-array `exclude` option', t => {
 	t.throws(() => {
 		getUrls('http://w3.org/2000/svg', {exclude: ''});
-	}, 'The `exclude` option must be an array');
+	}, {
+		message: 'The `exclude` option must be an array',
+	});
 });
 
 test('get urls without scheme', t => {
@@ -107,13 +109,13 @@ test('get urls without scheme', t => {
 
 	t.deepEqual(
 		getUrls(text, {
-			extractFromQueryString: true
+			extractFromQueryString: true,
 		}),
 		new Set([
 			'http://sindresorhus.com',
 			'http://yeoman.io',
-			'http://github.com'
-		])
+			'http://github.com',
+		]),
 	);
 });
 
@@ -122,12 +124,12 @@ test('get schemeless url from query string', t => {
 
 	t.deepEqual(
 		getUrls(text, {
-			extractFromQueryString: true
+			extractFromQueryString: true,
 		}),
 		new Set([
 			'http://awin1.com/cread.php?a=b&p=%2F%2Fuk.hotels.com%2Fhotel%2Fdetails.html%3Ftab%3Ddescription%26hotelId%3D287452%26q-localised-check-in%3D15%2F12%2F2017%26q-localised-check-out%3D19%2F12%2F2017%26q-room-0-adults%3D2%26q-room-0-children%3D0%26locale%3Den_GB%26pos%3DHCOM_UK',
-			'http://uk.hotels.com/hotel/details.html?hotelId=287452&locale=en_GB&pos=HCOM_UK&q-localised-check-in=15%2F12%2F2017&q-localised-check-out=19%2F12%2F2017&q-room-0-adults=2&q-room-0-children=0&tab=description'
-		])
+			'http://uk.hotels.com/hotel/details.html?hotelId=287452&locale=en_GB&pos=HCOM_UK&q-localised-check-in=15%2F12%2F2017&q-localised-check-out=19%2F12%2F2017&q-room-0-adults=2&q-room-0-children=0&tab=description',
+		]),
 	);
 });
 
@@ -136,12 +138,12 @@ test('requireSchemeOrWww turned off', t => {
 
 	t.deepEqual(
 		getUrls(text, {
-			requireSchemeOrWww: false
+			requireSchemeOrWww: false,
 		}),
 		new Set([
 			'http://sindresorhus.com',
-			'http://unicorn.education'
-		])
+			'http://unicorn.education',
+		]),
 	);
 });
 
@@ -168,15 +170,17 @@ test('filter all items from options.exclude', t => {
 		getUrls(text, {exclude}),
 		new Set([
 			'http://domain.com/81820190301/818201903010604/index.m3u8',
-			'http://domain.com/81820190301/818201903010606/index.m3u8'
-		])
+			'http://domain.com/81820190301/818201903010606/index.m3u8',
+		]),
 	);
 });
 
 test('throw an error when the text argument is not a string', t => {
 	t.throws(() => {
 		getUrls();
-	}, TypeError);
+	}, {
+		instanceOf: TypeError,
+	});
 });
 
 test('handles parens', t => {
@@ -185,8 +189,8 @@ test('handles parens', t => {
 	t.deepEqual(
 		getUrls(text),
 		new Set([
-			'https://sindresorhus.com/some/example'
-		])
+			'https://sindresorhus.com/some/example',
+		]),
 	);
 });
 
@@ -197,7 +201,7 @@ test('handles Markdown', t => {
 		getUrls(text),
 		new Set([
 			'https://sindresorhus.com/unicorn.png',
-			'https://sindresorhus.com/?foo=bar'
-		])
+			'https://sindresorhus.com/?foo=bar',
+		]),
 	);
 });

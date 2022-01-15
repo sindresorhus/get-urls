@@ -1,8 +1,8 @@
 import {expectType} from 'tsd';
-import getUrls = require('.');
+import getUrls from './index.js';
 
-const text =
-	'Lorem ipsum dolor sit amet, //sindresorhus.com consectetuer adipiscing http://yeoman.io elit.';
+const text
+	= 'Lorem ipsum dolor sit amet, //sindresorhus.com consectetuer adipiscing http://yeoman.io elit.';
 
 expectType<Set<string>>(getUrls(text));
 expectType<Set<string>>(getUrls(text, {extractFromQueryString: true}));

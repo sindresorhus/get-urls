@@ -1,6 +1,5 @@
-'use strict';
-const urlRegex = require('url-regex-safe');
-const normalizeUrl = require('normalize-url');
+import urlRegex from 'url-regex-safe';
+import normalizeUrl from 'normalize-url';
 
 const getUrlsFromQueryParameters = url => {
 	const returnValue = new Set();
@@ -15,7 +14,7 @@ const getUrlsFromQueryParameters = url => {
 	return returnValue;
 };
 
-module.exports = (text, options = {}) => {
+export default function getUrls(text, options = {}) {
 	if (typeof text !== 'string') {
 		throw new TypeError(`The \`text\` argument should be a string, got ${typeof text}`);
 	}
@@ -34,16 +33,18 @@ module.exports = (text, options = {}) => {
 
 	const urls = text.match(
 		urlRegex(options.requireSchemeOrWww === undefined ? undefined : {
-			strict: options.requireSchemeOrWww
-		})
+			strict: options.requireSchemeOrWww,
+			parens: true,
+		}),
 	) || [];
+
 	for (const url of urls) {
 		add(url);
 
 		if (options.extractFromQueryString) {
-			const qsUrls = getUrlsFromQueryParameters(url);
-			for (const qsUrl of qsUrls) {
-				add(qsUrl);
+			const queryStringUrls = getUrlsFromQueryParameters(url);
+			for (const queryStringUrl of queryStringUrls) {
+				add(queryStringUrl);
 			}
 		}
 	}
@@ -58,4 +59,4 @@ module.exports = (text, options = {}) => {
 	}
 
 	return returnValue;
-};
+}

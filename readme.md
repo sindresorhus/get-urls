@@ -4,20 +4,20 @@
 
 The URLs will be [normalized](https://github.com/sindresorhus/normalize-url).
 
-*Don't use this for any kind of security-related validation.*
+*Do not use this for any kind of security-related validation.*
 
 Please note the [known limitation](https://github.com/niftylettuce/url-regex-safe#limitations). You can work around this by setting `requireSchemeOrWww` to `true`.
 
 ## Install
 
-```
-$ npm install get-urls
+```sh
+npm install get-urls
 ```
 
 ## Usage
 
 ```js
-const getUrls = require('get-urls');
+import getUrls from 'get-urls';
 
 const text = 'Lorem ipsum dolor sit amet, //sindresorhus.com consectetuer adipiscing http://yeoman.io elit.';
 
