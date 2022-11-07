@@ -33,13 +33,15 @@
 		"string"
 	],
 	"dependencies": {
-		"normalize-url": "^7.0.2",
-		"re2": "^1.17.2",
+		"normalize-url": "^8.0.0",
 		"url-regex-safe": "^3.0.0"
 	},
 	"devDependencies": {
-		"ava": "^4.0.1",
-		"tsd": "^0.19.1",
-		"xo": "^0.47.0"
+		"ava": "^5.0.1",
+		"tsd": "^0.24.1",
+		"xo": "^0.52.4"
+	},
+	"optionalDependencies": {
+		"re2": "^1.17.7"
 	}
 }
