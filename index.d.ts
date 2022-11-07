@@ -1,6 +1,7 @@
-import {Options as NormalizeUrlOptions} from 'normalize-url';
+import type {Options as NormalizeUrlOptions} from 'normalize-url';
 
-export interface Options extends NormalizeUrlOptions {
+/* eslint-disable @typescript-eslint/no-redundant-type-constituents */
+export type Options = NormalizeUrlOptions & {
 	/**
 	Extract URLs that appear as query parameters in the found URLs.
 
@@ -23,7 +24,8 @@ export interface Options extends NormalizeUrlOptions {
 	@default false
 	*/
 	readonly requireSchemeOrWww?: boolean;
-}
+};
+/* eslint-enable @typescript-eslint/no-redundant-type-constituents */
 
 /**
 Get all URLs in a string.
