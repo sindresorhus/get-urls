@@ -1,4 +1,4 @@
-import {Options as NormalizeUrlOptions} from 'normalize-url';
+import type {Options as NormalizeUrlOptions} from 'normalize-url';
 
 export interface Options extends NormalizeUrlOptions {
 	/**
