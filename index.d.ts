@@ -1,6 +1,6 @@
 import type {Options as NormalizeUrlOptions} from 'normalize-url';
 
-export interface Options extends NormalizeUrlOptions {
+export type Options = {
 	/**
 	Extract URLs that appear as query parameters in the found URLs.
 
@@ -23,7 +23,7 @@ export interface Options extends NormalizeUrlOptions {
 	@default false
 	*/
 	readonly requireSchemeOrWww?: boolean;
-}
+} & NormalizeUrlOptions;
 
 /**
 Get all URLs in a string.
