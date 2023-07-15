@@ -19,7 +19,7 @@ export default function getUrls(text, options = {}) {
 		throw new TypeError(`The \`text\` argument should be a string, got ${typeof text}`);
 	}
 
-	if (typeof options.exclude !== 'undefined' && !Array.isArray(options.exclude)) {
+	if (options.exclude !== undefined && !Array.isArray(options.exclude)) {
 		throw new TypeError('The `exclude` option must be an array');
 	}
 
@@ -50,8 +50,8 @@ export default function getUrls(text, options = {}) {
 	}
 
 	for (const excludedItem of options.exclude || []) {
+		const regex = new RegExp(excludedItem);
 		for (const item of returnValue) {
-			const regex = new RegExp(excludedItem);
 			if (regex.test(item)) {
 				returnValue.delete(item);
 			}
