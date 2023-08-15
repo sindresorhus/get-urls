@@ -34,6 +34,7 @@ export default function getUrls(text, options = {}) {
 
 	const results = matches(
 		urlRegex(options.requireSchemeOrWww === undefined ? undefined : {
+			re2: false,
 			strict: options.requireSchemeOrWww,
 			parens: true,
 		}),
