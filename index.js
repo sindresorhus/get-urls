@@ -1,12 +1,13 @@
 import urlRegex from 'url-regex-safe';
 import normalizeUrl from 'normalize-url';
+import {isMatch, matches} from 'super-regex';
 
 const getUrlsFromQueryParameters = url => {
 	const returnValue = new Set();
 	const {searchParams} = (new URL(url.replace(/^(?:\/\/|(?:www\.))/i, 'http://$2')));
 
 	for (const [, value] of searchParams) {
-		if (urlRegex({exact: true}).test(value)) {
+		if (isMatch(urlRegex({exact: true}), value, {timeout: 500})) {
 			returnValue.add(value);
 		}
 	}
@@ -31,14 +32,19 @@ export default function getUrls(text, options = {}) {
 		} catch {}
 	};
 
-	const urls = text.match(
+	const results = matches(
 		urlRegex(options.requireSchemeOrWww === undefined ? undefined : {
+			re2: false,
 			strict: options.requireSchemeOrWww,
 			parens: true,
 		}),
-	) || [];
+		text,
+		{
+			matchTimeout: 500,
+		},
+	);
 
-	for (const url of urls) {
+	for (const {match: url} of results) {
 		add(url);
 
 		if (options.extractFromQueryString) {
@@ -49,10 +55,11 @@ export default function getUrls(text, options = {}) {
 		}
 	}
 
-	for (const excludedItem of options.exclude || []) {
+	for (const excludedItem of options.exclude ?? []) {
 		const regex = new RegExp(excludedItem);
+
 		for (const item of returnValue) {
-			if (regex.test(item)) {
+			if (isMatch(regex, item, {timeout: 500})) {
 				returnValue.delete(item);
 			}
 		}
